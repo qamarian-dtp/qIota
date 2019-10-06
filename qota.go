@@ -9,12 +9,12 @@ func New () (*Qota) {
 	return &Qota {big.NewInt (0)}
 }
 
-// Always create data of this type with New ().
+// Always create data of this type with function New ().
 type Qota struct {
 	value *big.Int
 }
 
-// Value () returns the next value of the qota.
+// Value () returns the next value of the iota.
 func (q *Qota) Value () (*big.Int) {
 	q.value.Add (q.value, big.NewInt (1))
 
