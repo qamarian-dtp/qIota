@@ -14,7 +14,7 @@ type Qota struct {
 	value *big.Int
 }
 
-// Value () returns true if the qota was successfully grown. Otherwise, it returns false.
+// Value () returns the next value of the qota.
 func (q *Qota) Value () (*big.Int) {
 	q.value.Add (q.value, big.NewInt (1))
 
