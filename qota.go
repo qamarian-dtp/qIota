@@ -1,25 +1,23 @@
 package qota
 
+import (
+	"math/big"
+)
+
 // Always create new Quotas with this function.
 func New () (*Qota) {
-	return &Qota {0}
+	return &Qota {big.NewInt (0)}
 }
 
 // Always create data of this type with New ().
 type Qota struct {
-	value uint8
+	value *big.Int
 }
 
-// Value () returns the current value of the qota.
-func (q *Qota) Value () (uint8) {
-	return q.value
-}
+// Value () returns true if the qota was successfully grown. Otherwise, it returns false.
+func (q *Qota) Value () (*big.Int) {
+	q.value.Add (q.value, big.NewInt (1))
 
-// Grow () returns true if the qota was successfully grown. Otherwise, it returns false.
-func (q *Qota) Grow () (bool) {
-	if q.value >= 255 {
-		return false
-	}
-	q.value ++
-	return true
+	output := big.NewInt (-1)
+	return output.Add (output, q.value)
 }
